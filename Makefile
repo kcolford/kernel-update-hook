@@ -1,9 +1,10 @@
 all:
 
 install:
-	install -D kernel-update-hook $(DESTDIR)/usr/bin/
+	install -Dt $(DESTDIR)/usr/bin/ kernel-update-hook
 	mkdir -p $(DESTDIR)/var/lib/kernel-update-hook/
 
-	install -Dm644 05-kernel-update-hook.hook $(DESTDIR)/usr/share/libalpm/hooks/
-	install -Dm644 kernel-update-hook.service $(DESTDIR)/usr/lib/systemd/system/
-	mkdir -p ../kernel-update-hook.service $(DESTDIR)/usr/lib/systemd/system/shutdown.target.wants/
+	install -Dm644 -t $(DESTDIR)/usr/share/libalpm/hooks/ 05-kernel-update-hook.hook
+	install -Dm644 $(DESTDIR)/usr/lib/systemd/system/ kernel-update-hook.service
+	mkdir -p $(DESTDIR)/usr/lib/systemd/system/shutdown.target.wants/
+	ln -s ../kernel-update-hook.service $(DESTDIR)/usr/lib/systemd/system/shutdown.target.wants/
