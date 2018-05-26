@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -euo pipefail
+mods=/var/lib/kernel-update-hook/modules
+if [ ! -e $mods ]; then
+    touch $mods
+fi
+awk '{print $1}' /proc/modules | sort -u - $mods > $mods.tmp
+mv $mods.tmp $mods
+for i in $(cat $mods); do
+    modprobe $i
+done

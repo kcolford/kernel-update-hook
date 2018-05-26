@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = linux
+Target = linux-*
+
+[Action]
+Description = Loading modules into kernel to retain functionality.
+When = PreTransaction
+Exec = /usr/bin/kernel-update-hook
