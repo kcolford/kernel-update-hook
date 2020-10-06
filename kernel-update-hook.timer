@@ -1,0 +1,8 @@
+[Unit]
+Description=Update list of modules regularly.
+
+[Timer]
+OnCalendar=daily
+
+[Install]
+WantedBy=timers.target

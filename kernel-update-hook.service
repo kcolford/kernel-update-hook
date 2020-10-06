@@ -2,4 +2,8 @@
 Description=Update list of used modules.
 
 [Service]
-ExecStart=/usr/bin/kernel-update-hook
+ExecStart=/usr/bin/kernel-update-modules
+
+[Install]
+WantedBy=shutdown.target
+

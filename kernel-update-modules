@@ -7,6 +7,5 @@ if [ ! -e $mods ]; then
     touch $mods
 fi
 
-for i in $(cat $mods); do
-    modprobe "$i"
-done
+awk '{print $1}' /proc/modules | sort -u - $mods > $mods.tmp
+mv $mods.tmp $mods
